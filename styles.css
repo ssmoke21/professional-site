@@ -762,6 +762,20 @@ a.highlight-card {
   color: var(--color-text-muted);
 }
 
+.footer-easter-egg {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  opacity: 0.4;
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+.footer-easter-egg:hover {
+  opacity: 0.7;
+  color: var(--color-text-muted);
+}
+
 /* ===== Animations ===== */
 .fade-in {
   opacity: 0;

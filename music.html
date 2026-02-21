@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steven M. Smoke &middot; More Steam</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Alternate Universe Overrides ===== */
+    :root {
+      --color-accent: #a855f7;
+      --color-accent-light: #c084fc;
+      --color-accent-bg: #faf5ff;
+    }
+
+    body {
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ===== Graffiti Spray Paint Text ===== */
+    .graffiti {
+      font-family: 'Permanent Marker', cursive;
+      position: absolute;
+      z-index: 10;
+      pointer-events: none;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    .graffiti-1 {
+      top: 320px;
+      right: 5%;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      color: #39ff14;
+      transform: rotate(-8deg);
+      text-shadow: 0 0 20px rgba(57, 255, 20, 0.5), 2px 2px 0 rgba(0,0,0,0.15);
+    }
+
+    .graffiti-2 {
+      top: 680px;
+      left: 3%;
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      color: #ff6ec7;
+      transform: rotate(5deg);
+      text-shadow: 0 0 20px rgba(255, 110, 199, 0.5), 2px 2px 0 rgba(0,0,0,0.15);
+    }
+
+    .graffiti-3 {
+      top: 1050px;
+      right: 8%;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      color: #ffff00;
+      transform: rotate(-3deg);
+      text-shadow: 0 0 15px rgba(255, 255, 0, 0.4), 2px 2px 0 rgba(0,0,0,0.2);
+    }
+
+    .graffiti-4 {
+      top: 1400px;
+      left: 5%;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: #00ffff;
+      transform: rotate(7deg);
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.5), 2px 2px 0 rgba(0,0,0,0.15);
+    }
+
+    /* Additional graffiti drips/marks */
+    .graffiti-5 {
+      top: 200px;
+      left: 8%;
+      font-size: clamp(1.2rem, 2vw, 1.8rem);
+      color: #ff4444;
+      transform: rotate(-15deg);
+      text-shadow: 0 0 12px rgba(255, 68, 68, 0.4);
+      opacity: 0.7;
+    }
+
+    .graffiti-6 {
+      top: 900px;
+      left: 50%;
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      color: #39ff14;
+      transform: rotate(12deg) translateX(-50%);
+      text-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+      opacity: 0.5;
+    }
+
+    /* ===== SVG Food Art ===== */
+    .graffiti-art {
+      position: absolute;
+      z-index: 10;
+      pointer-events: none;
+      opacity: 0.85;
+    }
+
+    .pierogi-1 {
+      top: 450px;
+      left: 2%;
+      width: clamp(80px, 10vw, 130px);
+      transform: rotate(15deg);
+    }
+
+    .pierogi-2 {
+      top: 1200px;
+      right: 3%;
+      width: clamp(70px, 9vw, 110px);
+      transform: rotate(-20deg);
+    }
+
+    .pierogi-3 {
+      top: 750px;
+      right: 12%;
+      width: clamp(50px, 7vw, 85px);
+      transform: rotate(35deg);
+      opacity: 0.6;
+    }
+
+    .kielbasa-1 {
+      top: 580px;
+      right: 2%;
+      width: clamp(100px, 14vw, 180px);
+      transform: rotate(-12deg);
+    }
+
+    .kielbasa-2 {
+      top: 1100px;
+      left: 4%;
+      width: clamp(90px, 12vw, 150px);
+      transform: rotate(20deg);
+      opacity: 0.7;
+    }
+
+    /* ===== Music Cards ===== */
+    .music-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .music-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      transition: all var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .music-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--color-accent);
+      color: inherit;
+    }
+
+    .music-card-icon {
+      width: 64px;
+      height: 64px;
+      color: var(--color-accent);
+    }
+
+    .music-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+    }
+
+    .music-card p {
+      color: var(--color-text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .music-card .music-link {
+      font-weight: 600;
+      color: var(--color-accent);
+      font-size: 0.9rem;
+    }
+
+    /* ===== Spray paint splatter overlay ===== */
+    .spray-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+      background:
+        radial-gradient(ellipse 80px 60px at 15% 25%, rgba(57, 255, 20, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 100px 80px at 85% 45%, rgba(255, 110, 199, 0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 60px 90px at 10% 75%, rgba(0, 255, 255, 0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 70px 50px at 90% 85%, rgba(255, 255, 0, 0.04) 0%, transparent 70%);
+    }
+
+    /* ===== "Back to Reality" nav link ===== */
+    .nav-back {
+      margin-left: auto;
+      font-weight: 600;
+      color: var(--color-accent) !important;
+    }
+
+    /* ===== Fun about text ===== */
+    .about-text-alt p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 600px) {
+      .music-grid {
+        grid-template-columns: 1fr;
+      }
+      .graffiti {
+        font-size: clamp(1rem, 5vw, 2rem) !important;
+      }
+      .graffiti-art {
+        width: 60px !important;
+      }
+      .graffiti-1 { top: 350px; right: 2%; }
+      .graffiti-2 { top: 550px; left: 2%; }
+      .graffiti-3 { top: 820px; right: 2%; }
+      .graffiti-4 { top: 1050px; left: 2%; }
+      .graffiti-5 { display: none; }
+      .graffiti-6 { display: none; }
+      .pierogi-3, .kielbasa-2 { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Spray paint splatter overlay -->
+  <div class="spray-overlay"></div>
+
+  <!-- ===== GRAFFITI LYRICS ===== -->
+  <div class="graffiti graffiti-1">Butter on the wind</div>
+  <div class="graffiti graffiti-2">The dough will rise</div>
+  <div class="graffiti graffiti-3">Foreign mustard on my tongue</div>
+  <div class="graffiti graffiti-4">Napkin War, Fork Fight</div>
+  <div class="graffiti graffiti-5">STEAM</div>
+  <div class="graffiti graffiti-6">&#x1f95f; &#x1f95f; &#x1f95f;</div>
+
+  <!-- ===== PIEROGI SVGs ===== -->
+  <svg class="graffiti-art pierogi-1" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 55 Q15 20, 60 12 Q105 5, 110 55 Q100 70, 60 72 Q20 70, 10 55Z" stroke="#ff6ec7" stroke-width="3" fill="rgba(255,110,199,0.1)" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15 55 Q20 50, 28 53 Q32 48, 40 52 Q44 47, 52 51 Q56 46, 64 50 Q68 45, 76 49 Q80 44, 88 48 Q92 43, 100 50 Q105 55, 110 55" stroke="#ff6ec7" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <!-- Steam lines -->
+    <path d="M40 10 Q42 4, 38 0" stroke="#ff6ec7" stroke-width="1.5" fill="none" opacity="0.5" stroke-linecap="round"/>
+    <path d="M55 8 Q57 2, 53 -2" stroke="#ff6ec7" stroke-width="1.5" fill="none" opacity="0.5" stroke-linecap="round"/>
+    <path d="M70 10 Q72 4, 68 0" stroke="#ff6ec7" stroke-width="1.5" fill="none" opacity="0.5" stroke-linecap="round"/>
+  </svg>
+
+  <svg class="graffiti-art pierogi-2" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 55 Q15 20, 60 12 Q105 5, 110 55 Q100 70, 60 72 Q20 70, 10 55Z" stroke="#39ff14" stroke-width="3" fill="rgba(57,255,20,0.08)" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15 55 Q20 50, 28 53 Q32 48, 40 52 Q44 47, 52 51 Q56 46, 64 50 Q68 45, 76 49 Q80 44, 88 48 Q92 43, 100 50 Q105 55, 110 55" stroke="#39ff14" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M40 10 Q42 4, 38 0" stroke="#39ff14" stroke-width="1.5" fill="none" opacity="0.5" stroke-linecap="round"/>
+    <path d="M55 8 Q57 2, 53 -2" stroke="#39ff14" stroke-width="1.5" fill="none" opacity="0.5" stroke-linecap="round"/>
+    <path d="M70 10 Q72 4, 68 0" stroke="#39ff14" stroke-width="1.5" fill="none" opacity="0.5" stroke-linecap="round"/>
+  </svg>
+
+  <svg class="graffiti-art pierogi-3" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 55 Q15 20, 60 12 Q105 5, 110 55 Q100 70, 60 72 Q20 70, 10 55Z" stroke="#ffff00" stroke-width="2.5" fill="rgba(255,255,0,0.06)" stroke-linecap="round"/>
+    <path d="M15 55 Q20 50, 28 53 Q32 48, 40 52 Q44 47, 52 51 Q56 46, 64 50 Q68 45, 76 49 Q80 44, 88 48 Q92 43, 100 50 Q105 55, 110 55" stroke="#ffff00" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </svg>
+
+  <!-- ===== KIELBASA SVGs ===== -->
+  <svg class="graffiti-art kielbasa-1" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Sausage body -->
+    <path d="M20 30 Q20 12, 40 12 L150 10 Q175 10, 180 25 Q185 40, 170 45 L50 48 Q20 48, 20 30Z" stroke="#00ffff" stroke-width="3" fill="rgba(0,255,255,0.08)" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Grill marks -->
+    <line x1="55" y1="14" x2="48" y2="46" stroke="#00ffff" stroke-width="2" opacity="0.4" stroke-linecap="round"/>
+    <line x1="85" y1="12" x2="78" y2="47" stroke="#00ffff" stroke-width="2" opacity="0.4" stroke-linecap="round"/>
+    <line x1="115" y1="11" x2="108" y2="47" stroke="#00ffff" stroke-width="2" opacity="0.4" stroke-linecap="round"/>
+    <line x1="145" y1="10" x2="138" y2="46" stroke="#00ffff" stroke-width="2" opacity="0.4" stroke-linecap="round"/>
+    <!-- End ties -->
+    <ellipse cx="22" cy="30" rx="6" ry="10" stroke="#00ffff" stroke-width="2" fill="none" opacity="0.6"/>
+    <ellipse cx="178" cy="28" rx="6" ry="10" stroke="#00ffff" stroke-width="2" fill="none" opacity="0.6"/>
+  </svg>
+
+  <svg class="graffiti-art kielbasa-2" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 30 Q20 12, 40 12 L150 10 Q175 10, 180 25 Q185 40, 170 45 L50 48 Q20 48, 20 30Z" stroke="#ff6ec7" stroke-width="3" fill="rgba(255,110,199,0.06)" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="55" y1="14" x2="48" y2="46" stroke="#ff6ec7" stroke-width="2" opacity="0.4" stroke-linecap="round"/>
+    <line x1="85" y1="12" x2="78" y2="47" stroke="#ff6ec7" stroke-width="2" opacity="0.4" stroke-linecap="round"/>
+    <line x1="115" y1="11" x2="108" y2="47" stroke="#ff6ec7" stroke-width="2" opacity="0.4" stroke-linecap="round"/>
+    <line x1="145" y1="10" x2="138" y2="46" stroke="#ff6ec7" stroke-width="2" opacity="0.4" stroke-linecap="round"/>
+    <ellipse cx="22" cy="30" rx="6" ry="10" stroke="#ff6ec7" stroke-width="2" fill="none" opacity="0.6"/>
+    <ellipse cx="178" cy="28" rx="6" ry="10" stroke="#ff6ec7" stroke-width="2" fill="none" opacity="0.6"/>
+  </svg>
+
+  <!-- ===== Navigation ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo" style="font-family: 'Permanent Marker', cursive; color: var(--color-accent);">SMS</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#music">Music</a></li>
+        <li><a href="index.html" class="nav-back">Back to Reality &rarr;</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-name" style="font-family: 'Permanent Marker', cursive;">Steven M. Smoke</h1>
+        <p class="hero-title" style="font-family: 'Permanent Marker', cursive; color: var(--color-accent);">a.k.a. More Steam</p>
+        <p class="hero-subtitle">Musician &middot; Creator &middot; Pierogi Consigliere</p>
+        <div class="hero-cta">
+          <a href="#music" class="btn btn-primary">Listen Now</a>
+          <a href="index.html" class="btn btn-outline">Back to Reality</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-image-frame" style="border-color: var(--color-accent);">
+          <img src="headshot.jpg" alt="Steven M. Smoke" />
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <a href="#about" aria-label="Scroll down">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title" style="font-family: 'Permanent Marker', cursive;">The Other Side</h2>
+      <div class="about-grid">
+        <div class="about-text about-text-alt">
+          <p>By day, an Informatics Pharmacist navigating the world of clinical decision support and artificial intelligence. But somewhere between the EMR alerts and the peer-reviewed papers, there's a parallel universe.</p>
+          <p>Welcome to the <strong>More Steam</strong> side &mdash; where the lab coat comes off and the headphones go on. A world of beats, melodies, and an inexplicable devotion to pierogies and kielbasa.</p>
+          <p>This is where pharmacy meets frequency. Where the dough rises and the butter rides the wind. Pull up a fork. It might get messy.</p>
+        </div>
+        <div class="about-highlights">
+          <div class="highlight-card" style="cursor: default;">
+            <div class="highlight-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z"/></svg>
+            </div>
+            <h3>&infin;</h3>
+            <p>Tracks Created</p>
+          </div>
+          <div class="highlight-card" style="cursor: default;">
+            <div class="highlight-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.87c1.355 0 2.697.055 4.024.165C17.155 8.51 18 9.473 18 10.608v2.513M15 8.25v-1.5m-6 1.5v-1.5m12 9.75l-1.5.75a3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0L3 16.5m15-3.38a48.474 48.474 0 00-6-.37c-2.032 0-4.034.126-6 .37m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.17c0 .62-.504 1.124-1.125 1.124H4.125A1.125 1.125 0 013 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 016 13.12M12.265 3.11a.375.375 0 11-.53 0L12 2.845l.265.265z"/></svg>
+            </div>
+            <h3>100%</h3>
+            <p>Pierogi Approved</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Music Section ===== -->
+  <section class="section section-alt" id="music">
+    <div class="container">
+      <h2 class="section-title" style="font-family: 'Permanent Marker', cursive;">The Music</h2>
+      <p class="section-subtitle">Stream, listen, vibe. No prescription needed.</p>
+
+      <div class="music-grid">
+        <a href="https://soundcloud.com/steve_smoke" class="music-card" target="_blank" rel="noopener noreferrer">
+          <svg class="music-card-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.057-.049-.1-.099-.1m-.899.828c-.06 0-.091.037-.104.094L0 14.479l.172 1.308c.013.06.045.094.104.094.057 0 .09-.035.104-.094l.206-1.308-.206-1.332c-.014-.057-.047-.094-.104-.094m1.945-1.089c-.066 0-.112.054-.119.12l-.209 2.393.209 2.307c.007.066.053.12.119.12.065 0 .111-.054.12-.12l.235-2.307-.235-2.393c-.009-.066-.055-.12-.12-.12m.899-.438c-.074 0-.127.06-.133.133l-.199 2.83.199 2.737c.006.075.059.133.133.133.073 0 .126-.058.133-.133l.224-2.737-.224-2.83c-.007-.073-.06-.133-.133-.133m.93-.156c-.083 0-.141.07-.148.148l-.187 2.985.187 2.886c.007.08.065.148.148.148.08 0 .139-.068.148-.148l.21-2.886-.21-2.985c-.009-.078-.068-.148-.148-.148m.94.09c-.09 0-.156.078-.163.163l-.175 2.731.175 2.743c.007.088.073.163.163.163.088 0 .154-.075.163-.163l.197-2.743-.197-2.731c-.009-.085-.075-.163-.163-.163m.975-.437c-.1 0-.17.085-.178.178l-.163 3.168.163 2.726c.008.093.078.178.178.178.098 0 .168-.085.178-.178l.184-2.726-.184-3.168c-.01-.093-.08-.178-.178-.178m.976-.088c-.107 0-.185.093-.192.192l-.152 3.256.152 2.705c.007.1.085.192.192.192.105 0 .183-.092.192-.192l.17-2.705-.17-3.256c-.009-.099-.087-.192-.192-.192m1.033-.311c-.117 0-.199.1-.206.206l-.14 3.567.14 2.676c.007.108.089.206.206.206.115 0 .197-.098.206-.206l.16-2.676-.16-3.567c-.009-.106-.091-.206-.206-.206m.993-.153c-.124 0-.213.108-.22.218l-.127 3.72.127 2.662c.007.112.096.218.22.218.122 0 .211-.106.22-.218l.143-2.662-.143-3.72c-.009-.11-.098-.218-.22-.218m1.048-.192c-.133 0-.227.115-.233.227l-.116 3.912.116 2.64c.006.115.1.227.233.227.13 0 .224-.112.233-.227l.13-2.64-.13-3.912c-.009-.112-.103-.227-.233-.227m1.04.039c-.14 0-.24.122-.247.24l-.105 3.673.105 2.617c.007.12.107.24.247.24.137 0 .237-.12.247-.24l.117-2.617-.117-3.673c-.01-.118-.11-.24-.247-.24m1.063-.234c-.15 0-.254.13-.26.254l-.094 3.907.094 2.59c.006.126.11.254.26.254.147 0 .25-.128.26-.254l.104-2.59-.104-3.907c-.01-.124-.113-.254-.26-.254m1.048.095c-.157 0-.267.137-.274.267l-.082 3.545.082 2.563c.007.133.117.267.274.267.155 0 .265-.134.274-.267l.092-2.563-.092-3.545c-.009-.13-.119-.267-.274-.267m1.078-.39c-.166 0-.28.145-.287.28l-.072 3.935.072 2.536c.007.138.121.28.287.28.163 0 .277-.142.287-.28l.08-2.536-.08-3.935c-.01-.135-.124-.28-.287-.28m2.154.395c-.023-.003-.322-.078-.663-.078-.345 0-.674.042-.982.125-1.408.375-2.455 1.652-2.455 3.165 0 1.796 1.456 3.252 3.252 3.252h3.97c.915 0 1.656-.742 1.656-1.656v-3.452c0-.087-.053-.153-.134-.172-1.296-.304-2.667-.44-3.644-.44"/>
+          </svg>
+          <h3>SoundCloud</h3>
+          <p>Original tracks and mixes. The laboratory of sound.</p>
+          <span class="music-link">Listen on SoundCloud &rarr;</span>
+        </a>
+
+        <a href="https://suno.com/playlist/8ee0ca14-b185-4d0a-acaa-d5855d9e766d" class="music-card" target="_blank" rel="noopener noreferrer">
+          <svg class="music-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z"/>
+          </svg>
+          <h3>Suno Playlist</h3>
+          <p>AI-assisted compositions. Where butter meets the wind.</p>
+          <span class="music-link">Listen on Suno &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p style="font-family: 'Permanent Marker', cursive; color: var(--color-accent); font-size: 1rem; margin-bottom: 0.5rem;">The dough will rise.</p>
+      <p>&copy; 2026 Steven M. Smoke. All rights reserved in this universe and all others.</p>
+      <a href="index.html" class="footer-easter-egg" style="opacity: 0.7;">&#8592; Back to Reality</a>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      navToggle.classList.toggle('active');
+    });
+
+    // Close mobile nav on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        navToggle.classList.remove('active');
+      });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offset = 80;
+          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.music-card, .highlight-card').forEach(el => {
+      el.classList.add('fade-in');
+      observer.observe(el);
+    });
+
+    // Subtle parallax on graffiti
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      document.querySelectorAll('.graffiti').forEach((el, i) => {
+        const speed = 0.02 + (i * 0.008);
+        el.style.transform = el.style.transform.replace(/translateY\([^)]*\)/, '') + ` translateY(${scrollY * speed}px)`;
+      });
+    });
+  </script>
+</body>
+</html>
