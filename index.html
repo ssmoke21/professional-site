@@ -847,29 +847,60 @@
       requestAnimationFrame(animate);
     });
 
-    // Citation badges — fetch live counts from Semantic Scholar
+    // Citation badges — fetch live counts from Semantic Scholar (batch + localStorage cache)
     (async () => {
-      const items = document.querySelectorAll('.pub-item[data-doi], .pub-item[data-pmid]');
-      for (const item of items) {
-        const badge = item.querySelector('.cite-badge');
-        if (!badge) continue;
-        const identifier = item.dataset.doi
-          ? `DOI:${encodeURIComponent(item.dataset.doi)}`
-          : `PMID:${item.dataset.pmid}`;
+      const CACHE_KEY = 'cite_cache_v1';
+      const CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours
+
+      const items = [...document.querySelectorAll('.pub-item[data-doi], .pub-item[data-pmid]')];
+      const identifiers = items.map(item =>
+        item.dataset.doi ? `DOI:${item.dataset.doi}` : `PMID:${item.dataset.pmid}`
+      );
+
+      // Try to use cached counts first
+      let counts = null;
+      try {
+        const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+        if (cached && Date.now() - cached.ts < CACHE_TTL) {
+          counts = cached.data;
+        }
+      } catch (_) {}
+
+      // Fetch from batch API if no valid cache
+      if (!counts) {
         try {
           const res = await fetch(
-            `https://api.semanticscholar.org/graph/v1/paper/${identifier}?fields=citationCount`,
-            { headers: { 'Accept': 'application/json' } }
+            'https://api.semanticscholar.org/graph/v1/paper/batch?fields=citationCount',
+            {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+              body: JSON.stringify({ ids: identifiers })
+            }
           );
-          if (!res.ok) continue;
-          const data = await res.json();
-          if (typeof data.citationCount === 'number' && data.citationCount > 0) {
-            badge.textContent = `Cited by ${data.citationCount}`;
+          if (res.ok) {
+            const data = await res.json();
+            counts = {};
+            data.forEach((paper, i) => {
+              if (paper && typeof paper.citationCount === 'number') {
+                counts[identifiers[i]] = paper.citationCount;
+              }
+            });
+            try { localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: counts })); } catch (_) {}
+          }
+        } catch (_) {}
+      }
+
+      // Apply badges
+      if (counts) {
+        items.forEach((item, i) => {
+          const badge = item.querySelector('.cite-badge');
+          if (!badge) return;
+          const count = counts[identifiers[i]];
+          if (typeof count === 'number' && count > 0) {
+            badge.textContent = `Cited by ${count}`;
             badge.style.display = 'inline-flex';
           }
-        } catch (_) {
-          // Network error or paper not found — badge stays hidden
-        }
+        });
       }
     })();
 
