@@ -96,6 +96,24 @@
       40%  { opacity: 0.9; }
       100% { opacity: 0; transform: scale(0.92); }
     }
+
+    /* ===== Citation badge ===== */
+    .cite-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25em;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: #777;
+      background: #f3f3f2;
+      border: 1px solid #e2e2e0;
+      border-radius: 20px;
+      padding: 0.15em 0.65em;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
   </style>
 </head>
 <body>
@@ -353,12 +371,12 @@
             <p class="pub-journal">Crit Care Explor. 2022</p>
           </div>
         </div>
-        <div class="pub-item" data-category="ams">
+        <div class="pub-item" data-category="ams" data-doi="10.1093/cid/ciac647">
           <span class="pub-year">2022</span>
           <div class="pub-details">
             <h3><a href="https://doi.org/10.1093/cid/ciac647" target="_blank" rel="noopener noreferrer">Evolution and transmission of cefiderocol-resistant <em>Acinetobacter baumannii</em> during an outbreak</a></h3>
             <p class="pub-authors">Smoke SM, Brophy A, Reveron S, et al.</p>
-            <p class="pub-journal">Clin Infect Dis. 2022</p>
+            <p class="pub-journal">Clin Infect Dis. 2022<span class="cite-badge" style="display:none"></span></p>
           </div>
         </div>
         <div class="pub-item" data-category="ams">
@@ -828,6 +846,30 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       requestAnimationFrame(animate);
     });
+
+    // Citation badges — fetch live counts from Semantic Scholar
+    (async () => {
+      const items = document.querySelectorAll('.pub-item[data-doi]');
+      for (const item of items) {
+        const doi = item.dataset.doi;
+        const badge = item.querySelector('.cite-badge');
+        if (!badge) continue;
+        try {
+          const res = await fetch(
+            `https://api.semanticscholar.org/graph/v1/paper/DOI:${encodeURIComponent(doi)}?fields=citationCount`,
+            { headers: { 'Accept': 'application/json' } }
+          );
+          if (!res.ok) continue;
+          const data = await res.json();
+          if (typeof data.citationCount === 'number') {
+            badge.textContent = `Cited by ${data.citationCount}`;
+            badge.style.display = 'inline-flex';
+          }
+        } catch (_) {
+          // Network error or paper not found — badge stays hidden
+        }
+      }
+    })();
 
     // Dream wake animation — fade out overlay when arriving from music page
     const dreamWakeOverlay = document.getElementById('dreamWakeOverlay');
