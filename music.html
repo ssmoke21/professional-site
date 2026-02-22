@@ -239,6 +239,21 @@
     .hero-image-frame {
       border-color: var(--color-accent) !important;
       box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-image-frame::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(0, 255, 255, 0.15));
+      mix-blend-mode: color;
+      z-index: 1;
+    }
+
+    .hero-image-frame img {
+      filter: contrast(1.15) brightness(0.85) saturate(0.6);
     }
 
     .highlight-card {
