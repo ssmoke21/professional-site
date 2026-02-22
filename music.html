@@ -246,23 +246,40 @@
 
     /* ===== Dark mode element overrides ===== */
     .hero-image-frame {
-      border-color: var(--color-accent) !important;
-      box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+      border: 2px solid #a855f7 !important;
+      box-shadow: 0 0 40px rgba(168, 85, 247, 0.5), 0 0 80px rgba(0, 255, 255, 0.2), inset 0 0 30px rgba(168, 85, 247, 0.3);
       overflow: hidden;
       position: relative;
     }
 
+    /* Neon color wash overlay */
     .hero-image-frame::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(0, 255, 255, 0.15));
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.5), rgba(255, 110, 199, 0.3), rgba(0, 255, 255, 0.4));
       mix-blend-mode: color;
       z-index: 1;
     }
 
+    /* Scanline overlay */
+    .hero-image-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.15) 2px,
+        rgba(0, 0, 0, 0.15) 4px
+      );
+      pointer-events: none;
+    }
+
     .hero-image-frame img {
-      filter: contrast(1.15) brightness(0.85) saturate(0.6);
+      filter: contrast(1.6) brightness(0.7) saturate(0.3) hue-rotate(20deg);
     }
 
     .highlight-card {
