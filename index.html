@@ -634,7 +634,7 @@
         }
       }
 
-      // "MORE STEAM" text flash
+      // "WARP ZONE" text flash
       let flashAlpha = 0;
       let flashPhase = 0;
 
@@ -682,7 +682,7 @@
           drawPierogi(p.x, p.y, p.size, p.rotation);
         });
 
-        // "MORE STEAM" pixel text in center
+        // "WARP ZONE" pixel text in center
         if (frame > 30) {
           flashPhase += 0.12;
           flashAlpha = Math.min(1, (frame - 30) / 20);
@@ -695,11 +695,11 @@
           ctx.fillStyle = '#a855f7';
           ctx.shadowColor = '#a855f7';
           ctx.shadowBlur = 30;
-          ctx.fillText('MORE STEAM', canvas.width / 2, canvas.height / 2);
+          ctx.fillText('WARP ZONE', canvas.width / 2, canvas.height / 2);
           ctx.shadowBlur = 0;
           ctx.strokeStyle = '#c084fc';
           ctx.lineWidth = 2;
-          ctx.strokeText('MORE STEAM', canvas.width / 2, canvas.height / 2);
+          ctx.strokeText('WARP ZONE', canvas.width / 2, canvas.height / 2);
           ctx.restore();
         }
 
