@@ -257,7 +257,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.5), rgba(255, 110, 199, 0.3), rgba(0, 255, 255, 0.4));
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.6), rgba(0, 255, 255, 0.4), rgba(255, 0, 200, 0.3));
       mix-blend-mode: color;
       z-index: 1;
     }
@@ -272,14 +272,25 @@
         0deg,
         transparent,
         transparent 2px,
-        rgba(0, 0, 0, 0.15) 2px,
-        rgba(0, 0, 0, 0.15) 4px
+        rgba(0, 0, 0, 0.2) 2px,
+        rgba(0, 0, 0, 0.2) 4px
       );
       pointer-events: none;
     }
 
     .hero-image-frame img {
-      filter: contrast(1.6) brightness(0.7) saturate(0.3) hue-rotate(20deg);
+      filter: invert(0.85) contrast(1.8) saturate(0.6) hue-rotate(180deg) brightness(0.9);
+    }
+
+    /* Daft Punk sunglasses overlay */
+    .hero-shades {
+      position: absolute;
+      top: 34%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      width: 65%;
+      pointer-events: none;
     }
 
     .highlight-card {
@@ -430,6 +441,24 @@
       <div class="hero-image">
         <div class="hero-image-frame" style="border-color: var(--color-accent);">
           <img src="headshot.jpg" alt="Steven M. Smoke" />
+          <!-- Daft Punk shades -->
+          <svg class="hero-shades" viewBox="0 0 200 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Left lens -->
+            <rect x="10" y="12" width="75" height="38" rx="8" fill="rgba(0,0,0,0.85)" stroke="#00ffff" stroke-width="3"/>
+            <rect x="16" y="18" width="63" height="26" rx="4" fill="none" stroke="rgba(0,255,255,0.3)" stroke-width="1"/>
+            <!-- Lens glare -->
+            <line x1="22" y1="22" x2="35" y2="22" stroke="rgba(0,255,255,0.6)" stroke-width="2" stroke-linecap="round"/>
+            <!-- Right lens -->
+            <rect x="115" y="12" width="75" height="38" rx="8" fill="rgba(0,0,0,0.85)" stroke="#a855f7" stroke-width="3"/>
+            <rect x="121" y="18" width="63" height="26" rx="4" fill="none" stroke="rgba(168,85,247,0.3)" stroke-width="1"/>
+            <!-- Lens glare -->
+            <line x1="127" y1="22" x2="140" y2="22" stroke="rgba(168,85,247,0.6)" stroke-width="2" stroke-linecap="round"/>
+            <!-- Bridge -->
+            <path d="M85 28 Q100 20, 115 28" stroke="#a855f7" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <!-- Temple arms -->
+            <line x1="10" y1="28" x2="0" y2="24" stroke="#00ffff" stroke-width="3" stroke-linecap="round"/>
+            <line x1="190" y1="28" x2="200" y2="24" stroke="#a855f7" stroke-width="3" stroke-linecap="round"/>
+          </svg>
         </div>
       </div>
     </div>
