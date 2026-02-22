@@ -7,9 +7,112 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Dream Wake Overlay (incoming from music page) ===== */
+    .dream-wake-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: #fafaf9;
+      overflow: hidden;
+      pointer-events: all;
+      transition: opacity 2s ease;
+    }
+
+    .dream-wake-overlay.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Fog wisps — same warm cream tones as the music page outgoing overlay */
+    .wake-fog {
+      position: absolute;
+      width: 200%;
+      height: 100%;
+      top: 0;
+      left: -50%;
+      pointer-events: none;
+    }
+
+    .wake-fog-1 {
+      background:
+        radial-gradient(ellipse 600px 200px at 20% 50%, rgba(250,250,249,0.7) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 180px at 70% 40%, rgba(245,240,235,0.6) 0%, transparent 70%),
+        radial-gradient(ellipse 400px 250px at 50% 60%, rgba(250,250,249,0.55) 0%, transparent 70%);
+      animation: wakeFog1 2.5s ease-in-out forwards;
+    }
+
+    .wake-fog-2 {
+      background:
+        radial-gradient(ellipse 700px 160px at 80% 55%, rgba(250,250,249,0.65) 0%, transparent 70%),
+        radial-gradient(ellipse 450px 220px at 30% 45%, rgba(240,235,228,0.55) 0%, transparent 70%),
+        radial-gradient(ellipse 550px 190px at 60% 65%, rgba(250,250,249,0.5) 0%, transparent 70%);
+      animation: wakeFog2 3s ease-in-out 0.2s forwards;
+    }
+
+    .wake-fog-3 {
+      background:
+        radial-gradient(ellipse 800px 300px at 40% 50%, rgba(250,250,249,0.6) 0%, transparent 60%),
+        radial-gradient(ellipse 600px 200px at 75% 35%, rgba(245,240,235,0.5) 0%, transparent 70%);
+      top: 10%;
+      animation: wakeFog3 3.5s ease-in-out 0.4s forwards;
+    }
+
+    @keyframes wakeFog1 {
+      0%   { transform: translateX(0) scaleY(1); opacity: 1; }
+      60%  { opacity: 0.8; }
+      100% { transform: translateX(8%) scaleY(1.3); opacity: 0; }
+    }
+
+    @keyframes wakeFog2 {
+      0%   { transform: translateX(0) scaleY(1); opacity: 0.9; }
+      60%  { opacity: 0.7; }
+      100% { transform: translateX(-10%) scaleY(1.2); opacity: 0; }
+    }
+
+    @keyframes wakeFog3 {
+      0%   { transform: translateX(0) scale(1); opacity: 0.8; }
+      60%  { opacity: 0.6; }
+      100% { transform: translateX(6%) scale(1.4); opacity: 0; }
+    }
+
+    .wake-text {
+      font-family: 'Permanent Marker', cursive;
+      font-size: clamp(1.8rem, 5vw, 3.5rem);
+      color: #555;
+      z-index: 1;
+      text-align: center;
+      letter-spacing: 0.05em;
+      text-shadow: 0 0 30px rgba(200,195,185,0.5), 0 0 60px rgba(200,195,185,0.2);
+      animation: wakeTextFade 2.2s ease forwards 0.2s;
+    }
+
+    @keyframes wakeTextFade {
+      0%   { opacity: 1; transform: scale(1); }
+      40%  { opacity: 0.9; }
+      100% { opacity: 0; transform: scale(0.92); }
+    }
+  </style>
 </head>
 <body>
+  <!-- Dream wake overlay — shown when arriving from music page -->
+  <div class="dream-wake-overlay" id="dreamWakeOverlay">
+    <div class="wake-fog wake-fog-1"></div>
+    <div class="wake-fog wake-fog-2"></div>
+    <div class="wake-fog wake-fog-3"></div>
+    <p class="wake-text">it was all a dream...</p>
+  </div>
+  <!-- Immediately show overlay if arriving from dream transition (before first paint) -->
+  <script>
+    if (new URLSearchParams(window.location.search).get('from') === 'dream') {
+      document.getElementById('dreamWakeOverlay').style.display = 'flex';
+    }
+  </script>
+
   <!-- Navigation -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
@@ -725,6 +828,15 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       requestAnimationFrame(animate);
     });
+
+    // Dream wake animation — fade out overlay when arriving from music page
+    const dreamWakeOverlay = document.getElementById('dreamWakeOverlay');
+    if (dreamWakeOverlay.style.display === 'flex') {
+      setTimeout(() => {
+        dreamWakeOverlay.classList.add('fade-out');
+        setTimeout(() => dreamWakeOverlay.remove(), 2200);
+      }, 900);
+    }
 
     // Publication filters
     const filterBtns = document.querySelectorAll('.pub-filter');

@@ -1274,7 +1274,10 @@
         const dest = this.href;
         dreamOverlay.classList.add('active');
         setTimeout(() => {
-          window.location.href = dest;
+          // Pass ?from=dream so the professional page can play a wake-up fade-in
+          const url = new URL(dest);
+          url.searchParams.set('from', 'dream');
+          window.location.href = url.toString();
         }, 3000);
       });
     });
