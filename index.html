@@ -403,60 +403,60 @@
             <p class="pub-journal">J Clin Pharm Ther. 2021;46(5):1308&ndash;1311<span class="cite-badge" style="display:none"></span></p>
           </div>
         </div>
-        <div class="pub-item" data-category="ams">
+        <div class="pub-item" data-category="ams" data-doi="10.1177/08971900211003447">
           <span class="pub-year">2021</span>
           <div class="pub-details">
             <h3><a href="https://doi.org/10.1177/08971900211003447" target="_blank" rel="noopener noreferrer">Save the quinolones! Institutional interventions to improve fluoroquinolone use</a></h3>
             <p class="pub-authors">Smoke SM, Plotkin S, Patel N, et al.</p>
-            <p class="pub-journal">J Pharm Pract. 2021</p>
+            <p class="pub-journal">J Pharm Pract. 2021<span class="cite-badge" style="display:none"></span></p>
           </div>
         </div>
-        <div class="pub-item" data-category="ams">
+        <div class="pub-item" data-category="ams" data-doi="10.1177/0897190020987130">
           <span class="pub-year">2021</span>
           <div class="pub-details">
             <h3><a href="https://doi.org/10.1177/0897190020987130" target="_blank" rel="noopener noreferrer">The DOOR to antibiotic stewardship</a></h3>
             <p class="pub-authors">Smoke SM, Patel VV, Leonida NI</p>
-            <p class="pub-journal">J Pharm Pract. 2021</p>
+            <p class="pub-journal">J Pharm Pract. 2021<span class="cite-badge" style="display:none"></span></p>
           </div>
         </div>
-        <div class="pub-item" data-category="covid">
+        <div class="pub-item" data-category="covid" data-doi="10.1016/j.ijantimicag.2020.106265">
           <span class="pub-year">2020</span>
           <div class="pub-details">
             <h3><a href="https://doi.org/10.1016/j.ijantimicag.2020.106265" target="_blank" rel="noopener noreferrer">Early clinical outcomes with tocilizumab for severe COVID-19</a></h3>
             <p class="pub-authors">Smoke SM, Raja K, Hilden P, et al.</p>
-            <p class="pub-journal">Int J Antimicrob Agents. 2020</p>
+            <p class="pub-journal">Int J Antimicrob Agents. 2020<span class="cite-badge" style="display:none"></span></p>
           </div>
         </div>
-        <div class="pub-item" data-category="ams">
+        <div class="pub-item" data-category="ams" data-pmid="33708022">
           <span class="pub-year">2020</span>
           <div class="pub-details">
             <h3><a href="https://pubmed.ncbi.nlm.nih.gov/33708022/" target="_blank" rel="noopener noreferrer">Antibiotic usage after procalcitonin-guided therapy algorithm implementation in a burn ICU</a></h3>
             <p class="pub-authors">Zbyrak V, Reveron SL, Smoke S, et al.</p>
-            <p class="pub-journal">Ann Burns Fire Disasters. 2020;33(4):317&ndash;322</p>
+            <p class="pub-journal">Ann Burns Fire Disasters. 2020;33(4):317&ndash;322<span class="cite-badge" style="display:none"></span></p>
           </div>
         </div>
-        <div class="pub-item" data-category="ams">
+        <div class="pub-item" data-category="ams" data-doi="10.1016/j.ijantimicag.2019.06.011">
           <span class="pub-year">2019</span>
           <div class="pub-details">
             <h3><a href="https://pubmed.ncbi.nlm.nih.gov/31202924/" target="_blank" rel="noopener noreferrer">Selective antibiotic susceptibility reporting and broad-spectrum IV antibiotic use</a></h3>
             <p class="pub-authors">Smoke SM, Raja K, Narayanan N, Brunetti L</p>
-            <p class="pub-journal">Int J Antimicrob Agents. 2019;54(3):367&ndash;370</p>
+            <p class="pub-journal">Int J Antimicrob Agents. 2019;54(3):367&ndash;370<span class="cite-badge" style="display:none"></span></p>
           </div>
         </div>
-        <div class="pub-item" data-category="ams">
+        <div class="pub-item" data-category="ams" data-doi="10.1177/0897190018821265">
           <span class="pub-year">2019</span>
           <div class="pub-details">
             <h3><a href="https://pubmed.ncbi.nlm.nih.gov/30595078/" target="_blank" rel="noopener noreferrer">Antibiotic decision-making among medical residents, medical students, and nurse practitioners</a></h3>
             <p class="pub-authors">Smoke SM, Centrella M, Grigoriu A, Brust-Sisti L</p>
-            <p class="pub-journal">J Pharm Pract. 2019;32(4):372&ndash;374</p>
+            <p class="pub-journal">J Pharm Pract. 2019;32(4):372&ndash;374<span class="cite-badge" style="display:none"></span></p>
           </div>
         </div>
-        <div class="pub-item" data-category="ams">
+        <div class="pub-item" data-category="ams" data-doi="10.1177/0897190018766155">
           <span class="pub-year">2018</span>
           <div class="pub-details">
             <h3><a href="https://pubmed.ncbi.nlm.nih.gov/29587577/" target="_blank" rel="noopener noreferrer">Effect of carbapenem selection on drug acquisition costs and carbapenem resistance</a></h3>
             <p class="pub-authors">Smoke SM, Abdul W, Grigoriu A, Vasant D</p>
-            <p class="pub-journal">J Pharm Pract. 2019;32(1):7&ndash;8</p>
+            <p class="pub-journal">J Pharm Pract. 2019;32(1):7&ndash;8<span class="cite-badge" style="display:none"></span></p>
           </div>
         </div>
       </div>
@@ -849,14 +849,16 @@
 
     // Citation badges — fetch live counts from Semantic Scholar
     (async () => {
-      const items = document.querySelectorAll('.pub-item[data-doi]');
+      const items = document.querySelectorAll('.pub-item[data-doi], .pub-item[data-pmid]');
       for (const item of items) {
-        const doi = item.dataset.doi;
         const badge = item.querySelector('.cite-badge');
         if (!badge) continue;
+        const identifier = item.dataset.doi
+          ? `DOI:${encodeURIComponent(item.dataset.doi)}`
+          : `PMID:${item.dataset.pmid}`;
         try {
           const res = await fetch(
-            `https://api.semanticscholar.org/graph/v1/paper/DOI:${encodeURIComponent(doi)}?fields=citationCount`,
+            `https://api.semanticscholar.org/graph/v1/paper/${identifier}?fields=citationCount`,
             { headers: { 'Accept': 'application/json' } }
           );
           if (!res.ok) continue;
