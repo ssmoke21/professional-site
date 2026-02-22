@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&family=Permanent+Marker&family=Bungee+Shade&display=swap" rel="stylesheet">
   <style>
     /* ===== Alternate Universe Overrides — Dark Mode ===== */
     :root {
@@ -51,61 +51,115 @@
       white-space: nowrap;
     }
 
+    /* -- Big, bold Permanent Marker pieces -- */
     .graffiti-1 {
-      top: 320px;
-      right: 5%;
-      font-size: clamp(2rem, 4vw, 3.5rem);
+      top: 280px;
+      right: 3%;
+      font-size: clamp(3rem, 7vw, 5.5rem);
       color: #39ff14;
-      transform: rotate(-8deg);
-      text-shadow: 0 0 30px rgba(57, 255, 20, 0.7), 0 0 60px rgba(57, 255, 20, 0.3), 2px 2px 0 rgba(0,0,0,0.4);
+      transform: rotate(-12deg);
+      text-shadow: 0 0 40px rgba(57, 255, 20, 0.8), 0 0 80px rgba(57, 255, 20, 0.3), 3px 3px 0 rgba(0,0,0,0.5);
     }
 
+    /* -- Stencil style -- */
     .graffiti-2 {
-      top: 680px;
-      left: 3%;
-      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      top: 650px;
+      left: 2%;
+      font-family: 'Black Ops One', cursive;
+      font-size: clamp(2.2rem, 5vw, 4rem);
       color: #ff6ec7;
-      transform: rotate(5deg);
-      text-shadow: 0 0 30px rgba(255, 110, 199, 0.7), 0 0 60px rgba(255, 110, 199, 0.3), 2px 2px 0 rgba(0,0,0,0.4);
+      transform: rotate(3deg);
+      text-shadow: 0 0 30px rgba(255, 110, 199, 0.7), 0 0 60px rgba(255, 110, 199, 0.3), 2px 2px 0 rgba(0,0,0,0.5);
+      letter-spacing: 0.08em;
     }
 
+    /* -- Small, crooked tag -- */
     .graffiti-3 {
-      top: 1050px;
-      right: 8%;
-      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      top: 1020px;
+      right: 4%;
+      font-size: clamp(1.2rem, 2.5vw, 2rem);
       color: #ffff00;
-      transform: rotate(-3deg);
-      text-shadow: 0 0 25px rgba(255, 255, 0, 0.6), 0 0 50px rgba(255, 255, 0, 0.25), 2px 2px 0 rgba(0,0,0,0.4);
+      transform: rotate(-22deg);
+      text-shadow: 0 0 20px rgba(255, 255, 0, 0.6), 0 0 40px rgba(255, 255, 0, 0.2), 2px 2px 0 rgba(0,0,0,0.4);
+      opacity: 0.85;
     }
 
+    /* -- Huge Bungee Shade display piece -- */
     .graffiti-4 {
-      top: 1400px;
-      left: 5%;
-      font-size: clamp(2rem, 4vw, 3.2rem);
+      top: 1350px;
+      left: 3%;
+      font-family: 'Bungee Shade', cursive;
+      font-size: clamp(2rem, 5vw, 3.8rem);
       color: #00ffff;
-      transform: rotate(7deg);
-      text-shadow: 0 0 30px rgba(0, 255, 255, 0.7), 0 0 60px rgba(0, 255, 255, 0.3), 2px 2px 0 rgba(0,0,0,0.4);
+      transform: rotate(5deg);
+      text-shadow: 0 0 35px rgba(0, 255, 255, 0.7), 0 0 70px rgba(0, 255, 255, 0.3);
+      letter-spacing: 0.05em;
     }
 
-    /* Additional graffiti drips/marks */
+    /* -- Tiny urgent scrawl -- */
     .graffiti-5 {
-      top: 200px;
-      left: 8%;
-      font-size: clamp(1.2rem, 2vw, 1.8rem);
+      top: 180px;
+      left: 6%;
+      font-size: clamp(0.9rem, 1.5vw, 1.3rem);
       color: #ff4444;
-      transform: rotate(-15deg);
-      text-shadow: 0 0 20px rgba(255, 68, 68, 0.6), 0 0 40px rgba(255, 68, 68, 0.2);
-      opacity: 0.8;
+      transform: rotate(-28deg);
+      text-shadow: 0 0 15px rgba(255, 68, 68, 0.6), 0 0 30px rgba(255, 68, 68, 0.2);
+      opacity: 0.75;
     }
 
+    /* -- Mid-size stencil at an angle -- */
     .graffiti-6 {
-      top: 900px;
+      top: 870px;
       left: 50%;
-      font-size: clamp(1rem, 2vw, 1.5rem);
+      font-family: 'Black Ops One', cursive;
+      font-size: clamp(1.4rem, 3vw, 2.5rem);
+      color: #a855f7;
+      transform: rotate(18deg) translateX(-50%);
+      text-shadow: 0 0 25px rgba(168, 85, 247, 0.7), 0 0 50px rgba(168, 85, 247, 0.3);
+      letter-spacing: 0.1em;
+    }
+
+    /* -- Extra graffiti elements -- */
+    .graffiti-7 {
+      top: 500px;
+      left: 55%;
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      color: #ff6ec7;
+      transform: rotate(-6deg);
+      text-shadow: 0 0 50px rgba(255, 110, 199, 0.6), 0 0 100px rgba(255, 110, 199, 0.2), 4px 4px 0 rgba(0,0,0,0.5);
+      opacity: 0.5;
+    }
+
+    .graffiti-8 {
+      top: 1550px;
+      right: 6%;
+      font-family: 'Bungee Shade', cursive;
+      font-size: clamp(1rem, 2vw, 1.6rem);
       color: #39ff14;
-      transform: rotate(12deg) translateX(-50%);
-      text-shadow: 0 0 15px rgba(57, 255, 20, 0.5);
-      opacity: 0.6;
+      transform: rotate(14deg);
+      text-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
+      opacity: 0.7;
+    }
+
+    .graffiti-9 {
+      top: 1180px;
+      left: 8%;
+      font-family: 'Black Ops One', cursive;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      color: #ffff00;
+      transform: rotate(-16deg);
+      text-shadow: 0 0 35px rgba(255, 255, 0, 0.7), 0 0 70px rgba(255, 255, 0, 0.25), 3px 3px 0 rgba(0,0,0,0.5);
+      opacity: 0.65;
+    }
+
+    .graffiti-10 {
+      top: 420px;
+      left: 1%;
+      font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+      color: #00ffff;
+      transform: rotate(25deg);
+      text-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+      opacity: 0.55;
     }
 
     /* ===== SVG Food Art ===== */
@@ -665,8 +719,7 @@
       .graffiti-2 { top: 550px; left: 2%; }
       .graffiti-3 { top: 820px; right: 2%; }
       .graffiti-4 { top: 1050px; left: 2%; }
-      .graffiti-5 { display: none; }
-      .graffiti-6 { display: none; }
+      .graffiti-5, .graffiti-6, .graffiti-7, .graffiti-8, .graffiti-9, .graffiti-10 { display: none; }
       .pierogi-3, .kielbasa-2 { display: none; }
       .steam-dial { width: 64px; height: 64px; }
       .steam-dial::after { height: 16px; top: 6px; }
@@ -688,7 +741,11 @@
   <div class="graffiti graffiti-3">Foreign mustard on my tongue</div>
   <div class="graffiti graffiti-4">Napkin War, Fork Fight</div>
   <div class="graffiti graffiti-5">STEAM</div>
-  <div class="graffiti graffiti-6">&#x1f95f; &#x1f95f; &#x1f95f;</div>
+  <div class="graffiti graffiti-6">MORE STEAM</div>
+  <div class="graffiti graffiti-7">&#x1f95f;</div>
+  <div class="graffiti graffiti-8">pierogi or die</div>
+  <div class="graffiti graffiti-9">FORK FIGHT</div>
+  <div class="graffiti graffiti-10">the butter rides</div>
 
   <!-- ===== PIEROGI SVGs ===== -->
   <svg class="graffiti-art pierogi-1" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
