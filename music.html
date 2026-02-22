@@ -45,127 +45,138 @@
     .graffiti {
       font-family: 'Permanent Marker', cursive;
       position: absolute;
-      z-index: 10;
+      z-index: 1;
       pointer-events: none;
       line-height: 1.1;
       white-space: nowrap;
     }
 
-    /* -- Big, bold Permanent Marker pieces -- */
+    /* --- RIGHT WALL --- */
+
+    /* Big, bold Permanent Marker — right wall, hero zone */
     .graffiti-1 {
-      top: 280px;
-      right: 3%;
-      font-size: clamp(3rem, 7vw, 5.5rem);
+      top: 300px;
+      right: 1%;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
       color: #39ff14;
       transform: rotate(-12deg);
       text-shadow: 0 0 40px rgba(57, 255, 20, 0.8), 0 0 80px rgba(57, 255, 20, 0.3), 3px 3px 0 rgba(0,0,0,0.5);
+      opacity: 0.7;
     }
 
-    /* -- Stencil style -- */
-    .graffiti-2 {
-      top: 650px;
-      left: 2%;
-      font-family: 'Black Ops One', cursive;
-      font-size: clamp(2.2rem, 5vw, 4rem);
+    /* Pierogi emoji — right wall, mid-hero */
+    .graffiti-7 {
+      top: 560px;
+      right: 2%;
+      font-size: clamp(3rem, 6vw, 5rem);
       color: #ff6ec7;
-      transform: rotate(3deg);
-      text-shadow: 0 0 30px rgba(255, 110, 199, 0.7), 0 0 60px rgba(255, 110, 199, 0.3), 2px 2px 0 rgba(0,0,0,0.5);
-      letter-spacing: 0.08em;
+      transform: rotate(-6deg);
+      text-shadow: 0 0 50px rgba(255, 110, 199, 0.6), 0 0 100px rgba(255, 110, 199, 0.2), 4px 4px 0 rgba(0,0,0,0.5);
+      opacity: 0.45;
     }
 
-    /* -- Small, crooked tag -- */
-    .graffiti-3 {
-      top: 1020px;
-      right: 4%;
+    /* Mid-size stencil — right wall, about zone */
+    .graffiti-6 {
+      top: 850px;
+      right: 1%;
+      font-family: 'Black Ops One', cursive;
       font-size: clamp(1.2rem, 2.5vw, 2rem);
+      color: #a855f7;
+      transform: rotate(18deg);
+      text-shadow: 0 0 25px rgba(168, 85, 247, 0.7), 0 0 50px rgba(168, 85, 247, 0.3);
+      letter-spacing: 0.1em;
+      opacity: 0.65;
+    }
+
+    /* CHEESE SO SHARP — right wall, music zone */
+    .graffiti-9 {
+      top: 1200px;
+      right: 1%;
+      font-family: 'Black Ops One', cursive;
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
       color: #ffff00;
-      transform: rotate(-22deg);
-      text-shadow: 0 0 20px rgba(255, 255, 0, 0.6), 0 0 40px rgba(255, 255, 0, 0.2), 2px 2px 0 rgba(0,0,0,0.4);
-      opacity: 0.85;
+      transform: rotate(-10deg);
+      text-shadow: 0 0 35px rgba(255, 255, 0, 0.7), 0 0 70px rgba(255, 255, 0, 0.25), 3px 3px 0 rgba(0,0,0,0.5);
+      opacity: 0.6;
     }
 
-    /* -- Huge Bungee Shade display piece -- */
-    .graffiti-4 {
-      top: 1350px;
-      left: 3%;
+    /* burners blazing — right wall, deep music zone */
+    .graffiti-8 {
+      top: 1550px;
+      right: 1%;
       font-family: 'Bungee Shade', cursive;
-      font-size: clamp(2rem, 5vw, 3.8rem);
-      color: #00ffff;
-      transform: rotate(5deg);
-      text-shadow: 0 0 35px rgba(0, 255, 255, 0.7), 0 0 70px rgba(0, 255, 255, 0.3);
-      letter-spacing: 0.05em;
+      font-size: clamp(0.9rem, 1.8vw, 1.4rem);
+      color: #39ff14;
+      transform: rotate(8deg);
+      text-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
+      opacity: 0.6;
     }
 
-    /* -- Tiny urgent scrawl -- */
+    /* --- LEFT WALL --- */
+
+    /* Tiny urgent scrawl — left wall, top */
     .graffiti-5 {
-      top: 180px;
-      left: 6%;
+      top: 160px;
+      left: 1%;
       font-size: clamp(0.9rem, 1.5vw, 1.3rem);
       color: #ff4444;
       transform: rotate(-28deg);
       text-shadow: 0 0 15px rgba(255, 68, 68, 0.6), 0 0 30px rgba(255, 68, 68, 0.2);
-      opacity: 0.75;
-    }
-
-    /* -- Mid-size stencil at an angle -- */
-    .graffiti-6 {
-      top: 870px;
-      left: 50%;
-      font-family: 'Black Ops One', cursive;
-      font-size: clamp(1.4rem, 3vw, 2.5rem);
-      color: #a855f7;
-      transform: rotate(18deg) translateX(-50%);
-      text-shadow: 0 0 25px rgba(168, 85, 247, 0.7), 0 0 50px rgba(168, 85, 247, 0.3);
-      letter-spacing: 0.1em;
-    }
-
-    /* -- Extra graffiti elements -- */
-    .graffiti-7 {
-      top: 500px;
-      left: 55%;
-      font-size: clamp(3.5rem, 8vw, 6rem);
-      color: #ff6ec7;
-      transform: rotate(-6deg);
-      text-shadow: 0 0 50px rgba(255, 110, 199, 0.6), 0 0 100px rgba(255, 110, 199, 0.2), 4px 4px 0 rgba(0,0,0,0.5);
-      opacity: 0.5;
-    }
-
-    .graffiti-8 {
-      top: 1550px;
-      right: 6%;
-      font-family: 'Bungee Shade', cursive;
-      font-size: clamp(1rem, 2vw, 1.6rem);
-      color: #39ff14;
-      transform: rotate(14deg);
-      text-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
-      opacity: 0.7;
-    }
-
-    .graffiti-9 {
-      top: 1180px;
-      left: 8%;
-      font-family: 'Black Ops One', cursive;
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      color: #ffff00;
-      transform: rotate(-16deg);
-      text-shadow: 0 0 35px rgba(255, 255, 0, 0.7), 0 0 70px rgba(255, 255, 0, 0.25), 3px 3px 0 rgba(0,0,0,0.5);
       opacity: 0.65;
     }
 
+    /* sour cream storm — left wall, hero zone */
     .graffiti-10 {
-      top: 420px;
+      top: 450px;
       left: 1%;
-      font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+      font-size: clamp(0.8rem, 1.4vw, 1.2rem);
       color: #00ffff;
-      transform: rotate(25deg);
+      transform: rotate(20deg);
       text-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
-      opacity: 0.55;
+      opacity: 0.5;
+    }
+
+    /* Stencil — left wall, about zone */
+    .graffiti-2 {
+      top: 720px;
+      left: 1%;
+      font-family: 'Black Ops One', cursive;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: #ff6ec7;
+      transform: rotate(3deg);
+      text-shadow: 0 0 30px rgba(255, 110, 199, 0.7), 0 0 60px rgba(255, 110, 199, 0.3), 2px 2px 0 rgba(0,0,0,0.5);
+      letter-spacing: 0.08em;
+      opacity: 0.65;
+    }
+
+    /* Small, crooked tag — left wall, music zone top */
+    .graffiti-3 {
+      top: 1050px;
+      left: 1%;
+      font-size: clamp(1rem, 2vw, 1.6rem);
+      color: #ffff00;
+      transform: rotate(-18deg);
+      text-shadow: 0 0 20px rgba(255, 255, 0, 0.6), 0 0 40px rgba(255, 255, 0, 0.2), 2px 2px 0 rgba(0,0,0,0.4);
+      opacity: 0.7;
+    }
+
+    /* Huge Bungee Shade — left wall, deep music zone */
+    .graffiti-4 {
+      top: 1380px;
+      left: 1%;
+      font-family: 'Bungee Shade', cursive;
+      font-size: clamp(1.6rem, 4vw, 3rem);
+      color: #00ffff;
+      transform: rotate(5deg);
+      text-shadow: 0 0 35px rgba(0, 255, 255, 0.7), 0 0 70px rgba(0, 255, 255, 0.3);
+      letter-spacing: 0.05em;
+      opacity: 0.6;
     }
 
     /* ===== SVG Food Art ===== */
     .graffiti-art {
       position: absolute;
-      z-index: 10;
+      z-index: 1;
       pointer-events: none;
       opacity: 0.9;
       filter: drop-shadow(0 0 8px currentColor);
@@ -897,11 +908,11 @@
       .graffiti-art {
         width: 60px !important;
       }
-      .graffiti-1 { top: 350px; right: 2%; }
-      .graffiti-2 { top: 550px; left: 2%; }
-      .graffiti-3 { top: 820px; right: 2%; }
-      .graffiti-4 { top: 1050px; left: 2%; }
-      .graffiti-5, .graffiti-6, .graffiti-7, .graffiti-8, .graffiti-9, .graffiti-10 { display: none; }
+      .graffiti-1 { top: 350px; right: 1%; }
+      .graffiti-2 { top: 700px; left: 1%; }
+      .graffiti-9 { top: 1100px; right: 1%; }
+      .graffiti-4 { top: 1400px; left: 1%; }
+      .graffiti-3, .graffiti-5, .graffiti-6, .graffiti-7, .graffiti-8, .graffiti-10 { display: none; }
       .pierogi-3, .kielbasa-2 { display: none; }
       .steam-dial-mount { width: 90px; height: 90px; }
       .dial-plate-svg { width: 90px; height: 90px; }
@@ -927,9 +938,9 @@
   <div class="graffiti graffiti-5">STEAM</div>
   <div class="graffiti graffiti-6">MORE STEAM</div>
   <div class="graffiti graffiti-7">&#x1f95f;</div>
-  <div class="graffiti graffiti-8">pierogi or die</div>
-  <div class="graffiti graffiti-9">FORK FIGHT</div>
-  <div class="graffiti graffiti-10">the butter rides</div>
+  <div class="graffiti graffiti-8">burners blazing in the parking lot</div>
+  <div class="graffiti graffiti-9">CHEESE SO SHARP</div>
+  <div class="graffiti graffiti-10">sour cream storm</div>
 
   <!-- ===== PIEROGI SVGs ===== -->
   <svg class="graffiti-art pierogi-1" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
