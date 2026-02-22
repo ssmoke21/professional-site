@@ -385,6 +385,14 @@
       color: var(--color-text-secondary);
     }
 
+    /* Nav logo per mode */
+    .nav-logo-analog, .nav-logo-steam {
+      transition: opacity 0.5s ease;
+    }
+
+    body.mode-analog .nav-logo-steam { display: none; }
+    body.mode-steam .nav-logo-analog { display: none; }
+
     /* Name emphasis per mode */
     .hero-name, .hero-title {
       transition: opacity 0.5s ease, transform 0.5s ease, font-size 0.5s ease;
@@ -917,7 +925,10 @@
   <!-- ===== Navigation ===== -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="#hero" class="nav-logo" style="font-family: 'Permanent Marker', cursive; color: var(--color-accent);">SMS</a>
+      <a href="#hero" class="nav-logo" style="font-family: 'Permanent Marker', cursive; color: var(--color-accent);">
+        <span class="nav-logo-analog">steve_smoke</span>
+        <span class="nav-logo-steam">@stereophonicdrumming4031</span>
+      </a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
       </button>
