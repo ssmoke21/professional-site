@@ -550,10 +550,10 @@
     document.querySelector('.footer-easter-egg').addEventListener('click', function(e) {
       e.preventDefault();
       const overlay = document.createElement('div');
-      overlay.style.cssText = 'position:fixed;inset:0;z-index:9999;background:#0a0a0f;overflow:hidden;image-rendering:pixelated;';
+      overlay.style.cssText = 'position:fixed;inset:0;z-index:9999;background:transparent;overflow:hidden;image-rendering:pixelated;';
       document.body.appendChild(overlay);
 
-      // Canvas for pixel art
+      // Canvas for pixel art — transparent so page shows through
       const canvas = document.createElement('canvas');
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -563,6 +563,9 @@
 
       // Pixel scale for retro look
       const px = 4;
+
+      // Fade-in frames: page visible for ~1.5s then fades to dark
+      const fadeInFrames = 90;
 
       // Draw a pixel-art pierogi
       function drawPierogi(x, y, size, rotation) {
@@ -639,11 +642,16 @@
       let flashPhase = 0;
 
       let frame = 0;
-      const totalFrames = 150; // ~2.5 sec at 60fps
+      const totalFrames = 180; // ~3 sec (extra time for the page-visible phase)
 
       function animate() {
         frame++;
-        ctx.fillStyle = `rgba(10, 10, 15, 0.3)`;
+
+        // Trail/fade fill — starts very transparent so page shows through,
+        // then gradually builds to opaque dark background
+        const fadeProg = Math.min(1, frame / fadeInFrames);
+        const trailAlpha = 0.02 + fadeProg * 0.28;
+        ctx.fillStyle = `rgba(10, 10, 15, ${trailAlpha})`;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         // Spawn lasers
@@ -682,10 +690,10 @@
           drawPierogi(p.x, p.y, p.size, p.rotation);
         });
 
-        // "WARP ZONE" pixel text in center
-        if (frame > 30) {
+        // "WARP ZONE" pixel text — delayed until background has mostly faded in
+        if (frame > 60) {
           flashPhase += 0.12;
-          flashAlpha = Math.min(1, (frame - 30) / 20);
+          flashAlpha = Math.min(1, (frame - 60) / 20);
           const pulse = 0.7 + Math.sin(flashPhase) * 0.3;
           ctx.save();
           ctx.globalAlpha = flashAlpha * pulse;
@@ -717,9 +725,8 @@
         }
       }
 
-      // Start with a black flash
-      ctx.fillStyle = '#0a0a0f';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // Start with transparent canvas — page shows through
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       requestAnimationFrame(animate);
     });
 

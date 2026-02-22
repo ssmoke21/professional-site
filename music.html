@@ -715,11 +715,84 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 1.2s ease;
+      overflow: hidden;
     }
 
     .dream-overlay.active {
       opacity: 1;
       pointer-events: all;
+    }
+
+    /* Fog wisps */
+    .fog {
+      position: absolute;
+      width: 200%;
+      height: 100%;
+      top: 0;
+      left: -50%;
+      opacity: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 40%,
+        rgba(255,255,255,0.03) 45%,
+        transparent 50%
+      );
+    }
+
+    .fog-1 {
+      background:
+        radial-gradient(ellipse 600px 200px at 20% 50%, rgba(255,255,255,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 180px at 70% 40%, rgba(255,255,255,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 400px 250px at 50% 60%, rgba(255,255,255,0.05) 0%, transparent 70%);
+    }
+
+    .fog-2 {
+      background:
+        radial-gradient(ellipse 700px 160px at 80% 55%, rgba(255,255,255,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 450px 220px at 30% 45%, rgba(255,255,255,0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 550px 190px at 60% 65%, rgba(255,255,255,0.04) 0%, transparent 70%);
+    }
+
+    .fog-3 {
+      background:
+        radial-gradient(ellipse 800px 300px at 40% 50%, rgba(255,255,255,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 600px 200px at 75% 35%, rgba(255,255,255,0.04) 0%, transparent 70%);
+      top: 10%;
+    }
+
+    .dream-overlay.active .fog-1 {
+      opacity: 1;
+      animation: fogDrift1 4s ease-in-out forwards;
+    }
+
+    .dream-overlay.active .fog-2 {
+      opacity: 1;
+      animation: fogDrift2 5s ease-in-out 0.3s forwards;
+    }
+
+    .dream-overlay.active .fog-3 {
+      opacity: 1;
+      animation: fogDrift3 6s ease-in-out 0.6s forwards;
+    }
+
+    @keyframes fogDrift1 {
+      0% { transform: translateX(-20%) scaleY(0.8); opacity: 0; }
+      30% { opacity: 0.8; }
+      100% { transform: translateX(10%) scaleY(1.2); opacity: 0.4; }
+    }
+
+    @keyframes fogDrift2 {
+      0% { transform: translateX(15%) scaleY(0.9); opacity: 0; }
+      35% { opacity: 0.7; }
+      100% { transform: translateX(-12%) scaleY(1.1); opacity: 0.3; }
+    }
+
+    @keyframes fogDrift3 {
+      0% { transform: translateX(-10%) scale(0.8); opacity: 0; }
+      40% { opacity: 0.6; }
+      100% { transform: translateX(8%) scale(1.3); opacity: 0.25; }
     }
 
     .dream-text {
@@ -731,6 +804,8 @@
       transition: opacity 1.5s ease 0.8s, transform 1.5s ease 0.8s;
       text-align: center;
       letter-spacing: 0.05em;
+      z-index: 1;
+      text-shadow: 0 0 30px rgba(255,255,255,0.3), 0 0 60px rgba(255,255,255,0.1);
     }
 
     .dream-overlay.active .dream-text {
@@ -1016,6 +1091,9 @@
 
   <!-- Dream fade overlay -->
   <div class="dream-overlay" id="dreamOverlay">
+    <div class="fog fog-1"></div>
+    <div class="fog fog-2"></div>
+    <div class="fog fog-3"></div>
     <p class="dream-text">it was all a dream...</p>
   </div>
 
