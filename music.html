@@ -31,6 +31,7 @@
       position: relative;
       overflow-x: hidden;
       background: var(--color-bg);
+      transition: background-color 0.6s ease;
     }
 
     /* Dark mode overrides for inherited styles */
@@ -330,6 +331,273 @@
       color: var(--color-text-secondary);
     }
 
+    /* ===== Steam Dial Control ===== */
+    .steam-dial-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2.5rem auto 0;
+      gap: 0.75rem;
+    }
+
+    .steam-dial-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .steam-dial-label {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.5s ease;
+      color: var(--color-text-muted);
+      min-width: 70px;
+    }
+
+    .steam-dial-label.label-analog { text-align: right; }
+    .steam-dial-label.label-steam { text-align: left; }
+
+    body.mode-analog .label-analog {
+      color: #e8891c;
+      text-shadow: 0 0 15px rgba(232, 137, 28, 0.6);
+    }
+
+    body.mode-steam .label-steam {
+      color: #a855f7;
+      text-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
+    }
+
+    .steam-dial {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 35%, #3a3a3a, #1a1a1a);
+      border: 3px solid #555;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.08);
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s ease, border-color 0.5s ease;
+    }
+
+    /* Outer ring tick marks */
+    .steam-dial::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      border: 2px dashed rgba(255,255,255,0.08);
+      pointer-events: none;
+    }
+
+    /* Indicator notch */
+    .steam-dial::after {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 20px;
+      background: #fff;
+      border-radius: 2px;
+      box-shadow: 0 0 8px rgba(255,255,255,0.5);
+      transition: background 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    body.mode-steam .steam-dial {
+      transform: rotate(0deg);
+      border-color: rgba(168, 85, 247, 0.4);
+      box-shadow: 0 0 25px rgba(168, 85, 247, 0.25), inset 0 2px 4px rgba(255,255,255,0.08);
+    }
+
+    body.mode-steam .steam-dial::after {
+      background: #a855f7;
+      box-shadow: 0 0 12px rgba(168, 85, 247, 0.8);
+    }
+
+    body.mode-analog .steam-dial {
+      transform: rotate(-180deg);
+      border-color: rgba(232, 137, 28, 0.4);
+      box-shadow: 0 0 25px rgba(232, 137, 28, 0.25), inset 0 2px 4px rgba(255,255,255,0.08);
+    }
+
+    body.mode-analog .steam-dial::after {
+      background: #e8891c;
+      box-shadow: 0 0 12px rgba(232, 137, 28, 0.8);
+    }
+
+    .steam-dial:hover {
+      transform: scale(1.05);
+    }
+
+    body.mode-steam .steam-dial:hover {
+      transform: rotate(0deg) scale(1.05);
+    }
+
+    body.mode-analog .steam-dial:hover {
+      transform: rotate(-180deg) scale(1.05);
+    }
+
+    .steam-dial-hint {
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      opacity: 0.6;
+    }
+
+    /* ===== Analog Mode — Warm Vintage Film ===== */
+    body.mode-analog {
+      --color-bg: #0d0906;
+      --color-bg-alt: #140f0a;
+      --color-surface: #1c1510;
+      --color-text: #e8ddd0;
+      --color-text-secondary: #b09880;
+      --color-text-muted: #6b5a48;
+      --color-accent: #e8891c;
+      --color-accent-light: #f0a040;
+      --color-accent-bg: #1c1408;
+      --color-border: #2e2318;
+      --color-border-light: #231a12;
+    }
+
+    body.mode-analog .navbar { background: rgba(13, 9, 6, 0.95); }
+    body.mode-analog .navbar.scrolled { background: rgba(13, 9, 6, 0.98); box-shadow: 0 2px 20px rgba(0,0,0,0.6); }
+    body.mode-analog .hero { background: var(--color-bg); }
+
+    /* Analog headshot — warm vintage film look */
+    body.mode-analog .hero-image-frame {
+      border-color: #e8891c !important;
+      box-shadow: 0 0 40px rgba(232, 137, 28, 0.35), 0 0 80px rgba(180, 80, 20, 0.15), inset 0 0 30px rgba(232, 137, 28, 0.15);
+    }
+
+    body.mode-analog .hero-image-frame::after {
+      background: linear-gradient(135deg, rgba(232, 137, 28, 0.45), rgba(180, 80, 20, 0.35), rgba(100, 30, 60, 0.3));
+    }
+
+    body.mode-analog .hero-image-frame img {
+      filter: contrast(1.3) brightness(0.6) saturate(0.7) sepia(0.5) hue-rotate(-10deg);
+    }
+
+    body.mode-analog .hero-shades {
+      filter: sepia(1) saturate(3) brightness(0.85) hue-rotate(-10deg);
+    }
+
+    /* Spray overlay — warm tones */
+    body.mode-analog .spray-overlay {
+      background:
+        radial-gradient(ellipse 120px 90px at 15% 25%, rgba(232, 137, 28, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 150px 120px at 85% 45%, rgba(180, 80, 20, 0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 100px 130px at 10% 75%, rgba(120, 60, 30, 0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 110px 80px at 90% 85%, rgba(200, 120, 40, 0.04) 0%, transparent 70%);
+    }
+
+    /* Vignette overlay for analog mode */
+    .vignette-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%);
+    }
+
+    body.mode-analog .vignette-overlay {
+      opacity: 1;
+    }
+
+    /* Film grain overlay for analog mode */
+    .grain-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 99;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+
+    body.mode-analog .grain-overlay {
+      opacity: 0.15;
+    }
+
+    /* Graffiti & pierogi dimming in analog mode */
+    .graffiti, .graffiti-art {
+      transition: opacity 0.6s ease;
+    }
+
+    body.mode-analog .graffiti {
+      opacity: 0.12 !important;
+    }
+
+    body.mode-analog .graffiti-art {
+      opacity: 0.08 !important;
+    }
+
+    /* ===== Card Emphasis System ===== */
+    .music-card {
+      transition: all var(--transition), opacity 0.5s ease, filter 0.5s ease;
+    }
+
+    /* Steam mode: AI cards glow, human cards fade */
+    body.mode-steam .music-card[data-type="human"] {
+      opacity: 0.4;
+      filter: grayscale(0.4);
+    }
+
+    body.mode-steam .music-card[data-type="human"]:hover {
+      opacity: 0.85;
+      filter: grayscale(0);
+    }
+
+    body.mode-steam .music-card[data-type="ai"] {
+      box-shadow: 0 0 18px rgba(168, 85, 247, 0.12);
+    }
+
+    /* Analog mode: Human cards glow, AI cards fade */
+    body.mode-analog .music-card[data-type="ai"] {
+      opacity: 0.4;
+      filter: grayscale(0.4);
+    }
+
+    body.mode-analog .music-card[data-type="ai"]:hover {
+      opacity: 0.85;
+      filter: grayscale(0);
+    }
+
+    body.mode-analog .music-card[data-type="human"] {
+      box-shadow: 0 0 18px rgba(232, 137, 28, 0.12);
+    }
+
+    body.mode-analog .music-card:hover {
+      box-shadow: 0 8px 32px rgba(232, 137, 28, 0.2);
+      border-color: var(--color-accent);
+    }
+
+    body.mode-analog .highlight-card:hover {
+      border-color: var(--color-accent);
+      box-shadow: 0 0 20px rgba(232, 137, 28, 0.15);
+    }
+
+    body.mode-analog .btn-primary {
+      background: var(--color-accent);
+      box-shadow: 0 0 20px rgba(232, 137, 28, 0.3);
+    }
+
+    body.mode-analog .btn-primary:hover {
+      background: var(--color-accent-light);
+      box-shadow: 0 0 30px rgba(232, 137, 28, 0.5);
+    }
+
+    body.mode-analog .music-embed {
+      box-shadow: 0 0 20px rgba(232, 137, 28, 0.15);
+    }
+
     /* ===== Responsive ===== */
     @media (max-width: 600px) {
       .music-grid {
@@ -348,13 +616,19 @@
       .graffiti-5 { display: none; }
       .graffiti-6 { display: none; }
       .pierogi-3, .kielbasa-2 { display: none; }
+      .steam-dial { width: 64px; height: 64px; }
+      .steam-dial::after { height: 16px; top: 6px; }
+      .steam-dial-label { font-size: 0.8rem; min-width: 55px; }
     }
   </style>
 </head>
-<body>
+<body class="mode-steam">
 
   <!-- Spray paint splatter overlay -->
   <div class="spray-overlay"></div>
+  <!-- Film grain & vignette (analog mode) -->
+  <div class="grain-overlay"></div>
+  <div class="vignette-overlay"></div>
 
   <!-- ===== GRAFFITI LYRICS ===== -->
   <div class="graffiti graffiti-1">Butter on the wind</div>
@@ -462,6 +736,16 @@
         </div>
       </div>
     </div>
+    <!-- Steam Dial -->
+    <div class="steam-dial-container">
+      <div class="steam-dial-wrapper">
+        <span class="steam-dial-label label-analog">Analog</span>
+        <div class="steam-dial" id="steamDial" title="Click to toggle mode"></div>
+        <span class="steam-dial-label label-steam">Steam</span>
+      </div>
+      <span class="steam-dial-hint">click to toggle</span>
+    </div>
+
     <div class="hero-scroll">
       <a href="#about" aria-label="Scroll down">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -513,7 +797,7 @@
       </div>
 
       <div class="music-grid">
-        <a href="https://soundcloud.com/steve_smoke" class="music-card" target="_blank" rel="noopener noreferrer">
+        <a href="https://soundcloud.com/steve_smoke" class="music-card" data-type="human" target="_blank" rel="noopener noreferrer">
           <svg class="music-card-icon" viewBox="0 0 24 24" fill="currentColor">
             <path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.057-.049-.1-.099-.1m-.899.828c-.06 0-.091.037-.104.094L0 14.479l.172 1.308c.013.06.045.094.104.094.057 0 .09-.035.104-.094l.206-1.308-.206-1.332c-.014-.057-.047-.094-.104-.094m1.945-1.089c-.066 0-.112.054-.119.12l-.209 2.393.209 2.307c.007.066.053.12.119.12.065 0 .111-.054.12-.12l.235-2.307-.235-2.393c-.009-.066-.055-.12-.12-.12m.899-.438c-.074 0-.127.06-.133.133l-.199 2.83.199 2.737c.006.075.059.133.133.133.073 0 .126-.058.133-.133l.224-2.737-.224-2.83c-.007-.073-.06-.133-.133-.133m.93-.156c-.083 0-.141.07-.148.148l-.187 2.985.187 2.886c.007.08.065.148.148.148.08 0 .139-.068.148-.148l.21-2.886-.21-2.985c-.009-.078-.068-.148-.148-.148m.94.09c-.09 0-.156.078-.163.163l-.175 2.731.175 2.743c.007.088.073.163.163.163.088 0 .154-.075.163-.163l.197-2.743-.197-2.731c-.009-.085-.075-.163-.163-.163m.975-.437c-.1 0-.17.085-.178.178l-.163 3.168.163 2.726c.008.093.078.178.178.178.098 0 .168-.085.178-.178l.184-2.726-.184-3.168c-.01-.093-.08-.178-.178-.178m.976-.088c-.107 0-.185.093-.192.192l-.152 3.256.152 2.705c.007.1.085.192.192.192.105 0 .183-.092.192-.192l.17-2.705-.17-3.256c-.009-.099-.087-.192-.192-.192m1.033-.311c-.117 0-.199.1-.206.206l-.14 3.567.14 2.676c.007.108.089.206.206.206.115 0 .197-.098.206-.206l.16-2.676-.16-3.567c-.009-.106-.091-.206-.206-.206m.993-.153c-.124 0-.213.108-.22.218l-.127 3.72.127 2.662c.007.112.096.218.22.218.122 0 .211-.106.22-.218l.143-2.662-.143-3.72c-.009-.11-.098-.218-.22-.218m1.048-.192c-.133 0-.227.115-.233.227l-.116 3.912.116 2.64c.006.115.1.227.233.227.13 0 .224-.112.233-.227l.13-2.64-.13-3.912c-.009-.112-.103-.227-.233-.227m1.04.039c-.14 0-.24.122-.247.24l-.105 3.673.105 2.617c.007.12.107.24.247.24.137 0 .237-.12.247-.24l.117-2.617-.117-3.673c-.01-.118-.11-.24-.247-.24m1.063-.234c-.15 0-.254.13-.26.254l-.094 3.907.094 2.59c.006.126.11.254.26.254.147 0 .25-.128.26-.254l.104-2.59-.104-3.907c-.01-.124-.113-.254-.26-.254m1.048.095c-.157 0-.267.137-.274.267l-.082 3.545.082 2.563c.007.133.117.267.274.267.155 0 .265-.134.274-.267l.092-2.563-.092-3.545c-.009-.13-.119-.267-.274-.267m1.078-.39c-.166 0-.28.145-.287.28l-.072 3.935.072 2.536c.007.138.121.28.287.28.163 0 .277-.142.287-.28l.08-2.536-.08-3.935c-.01-.135-.124-.28-.287-.28m2.154.395c-.023-.003-.322-.078-.663-.078-.345 0-.674.042-.982.125-1.408.375-2.455 1.652-2.455 3.165 0 1.796 1.456 3.252 3.252 3.252h3.97c.915 0 1.656-.742 1.656-1.656v-3.452c0-.087-.053-.153-.134-.172-1.296-.304-2.667-.44-3.644-.44"/>
           </svg>
@@ -522,7 +806,7 @@
           <span class="music-link">Listen on SoundCloud &rarr;</span>
         </a>
 
-        <a href="https://soundcloud.com/steve_smoke/sets/scc-2017?si=2e58190a655d4a36a5687dc63d283c4f&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" class="music-card" target="_blank" rel="noopener noreferrer">
+        <a href="https://soundcloud.com/steve_smoke/sets/scc-2017?si=2e58190a655d4a36a5687dc63d283c4f&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" class="music-card" data-type="human" target="_blank" rel="noopener noreferrer">
           <svg class="music-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3"/>
           </svg>
@@ -531,7 +815,7 @@
           <span class="music-link">Listen on SoundCloud &rarr;</span>
         </a>
 
-        <a href="https://suno.com/playlist/44814966-60d7-4245-9be6-79e92817fc43" class="music-card" target="_blank" rel="noopener noreferrer">
+        <a href="https://suno.com/playlist/44814966-60d7-4245-9be6-79e92817fc43" class="music-card" data-type="ai" target="_blank" rel="noopener noreferrer">
           <svg class="music-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/>
           </svg>
@@ -540,7 +824,7 @@
           <span class="music-link">Listen on Suno &rarr;</span>
         </a>
 
-        <a href="https://suno.com/@stereophonicdrumming4031" class="music-card" target="_blank" rel="noopener noreferrer">
+        <a href="https://suno.com/@stereophonicdrumming4031" class="music-card" data-type="ai" target="_blank" rel="noopener noreferrer">
           <svg class="music-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z"/>
           </svg>
@@ -549,7 +833,7 @@
           <span class="music-link">Browse on Suno &rarr;</span>
         </a>
 
-        <a href="https://open.spotify.com/show/1D79kHPArirj7kVhQUBBCE?si=5ce221dad5d24b91" class="music-card" target="_blank" rel="noopener noreferrer">
+        <a href="https://open.spotify.com/show/1D79kHPArirj7kVhQUBBCE?si=5ce221dad5d24b91" class="music-card" data-type="human" target="_blank" rel="noopener noreferrer">
           <svg class="music-card-icon" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
           </svg>
@@ -627,6 +911,15 @@
         const speed = 0.02 + (i * 0.008);
         el.style.transform = el.style.transform.replace(/translateY\([^)]*\)/, '') + ` translateY(${scrollY * speed}px)`;
       });
+    });
+
+    // Steam dial mode toggle
+    const steamDial = document.getElementById('steamDial');
+    steamDial.addEventListener('click', () => {
+      const body = document.body;
+      const isSteam = body.classList.contains('mode-steam');
+      body.classList.remove(isSteam ? 'mode-steam' : 'mode-analog');
+      body.classList.add(isSteam ? 'mode-analog' : 'mode-steam');
     });
   </script>
 </body>
