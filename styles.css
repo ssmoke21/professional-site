@@ -710,6 +710,15 @@ a.highlight-card {
   color: rgba(255,255,255,0.85);
 }
 
+.journal-preview-thumbnail {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: block;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
 .journal-preview-label {
   font-size: 0.75rem;
   font-weight: 600;
