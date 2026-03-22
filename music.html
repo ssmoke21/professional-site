@@ -219,6 +219,57 @@
       opacity: 0.7;
     }
 
+    /* ===== Album Art Collage Background ===== */
+    .artwork-collage {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      overflow: hidden;
+      pointer-events: none;
+      opacity: 0.12;
+      transition: opacity 0.6s ease, filter 0.6s ease;
+    }
+
+    .artwork-collage img {
+      position: absolute;
+      border-radius: 6px;
+      object-fit: cover;
+      filter: saturate(1.4) contrast(1.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    }
+
+    /* Scatter the 12 images across the viewport */
+    .art-1  { width: 180px; top: 2%;   left: 3%;   transform: rotate(-8deg); }
+    .art-2  { width: 160px; top: 5%;   left: 55%;  transform: rotate(5deg); }
+    .art-3  { width: 200px; top: 4%;   right: 5%;  transform: rotate(-3deg); }
+    .art-4  { width: 170px; top: 28%;  left: 8%;   transform: rotate(12deg); }
+    .art-5  { width: 190px; top: 30%;  left: 42%;  transform: rotate(-6deg); }
+    .art-6  { width: 165px; top: 25%;  right: 3%;  transform: rotate(9deg); }
+    .art-7  { width: 185px; top: 52%;  left: 2%;   transform: rotate(-11deg); }
+    .art-8  { width: 175px; top: 55%;  left: 48%;  transform: rotate(4deg); }
+    .art-9  { width: 195px; top: 50%;  right: 6%;  transform: rotate(-7deg); }
+    .art-10 { width: 170px; top: 75%;  left: 6%;   transform: rotate(8deg); }
+    .art-11 { width: 180px; top: 78%;  left: 40%;  transform: rotate(-5deg); }
+    .art-12 { width: 160px; top: 73%;  right: 4%;  transform: rotate(10deg); }
+
+    /* Mode-aware collage appearance */
+    body.mode-steam .artwork-collage {
+      opacity: 0.15;
+      filter: brightness(1.1);
+    }
+
+    body.mode-analog .artwork-collage {
+      opacity: 0.10;
+      filter: sepia(0.3) brightness(0.8);
+    }
+
+    /* Hide some images on mobile for cleaner look */
+    @media (max-width: 768px) {
+      .artwork-collage { opacity: 0.06; }
+      .art-2, .art-5, .art-8, .art-11 { display: none; }
+      .artwork-collage img { width: 120px !important; }
+    }
+
     /* ===== Music Embed ===== */
     .music-embed {
       margin-top: 2.5rem;
@@ -923,6 +974,22 @@
   </style>
 </head>
 <body class="mode-analog">
+
+  <!-- Album Art Collage Background -->
+  <div class="artwork-collage">
+    <img class="art-1"  src="images/artwork/dough-and-dreams.jpg"          alt="" loading="lazy">
+    <img class="art-2"  src="images/artwork/hidden-pierogi-door.jpg"       alt="" loading="lazy">
+    <img class="art-3"  src="images/artwork/battle-robot-pirate-island.jpg" alt="" loading="lazy">
+    <img class="art-4"  src="images/artwork/midnight-pierogi-run.jpg"      alt="" loading="lazy">
+    <img class="art-5"  src="images/artwork/pierogi-factory-dreams.jpg"    alt="" loading="lazy">
+    <img class="art-6"  src="images/artwork/pierogi-paradise.jpg"          alt="" loading="lazy">
+    <img class="art-7"  src="images/artwork/pierogi-showdown.jpg"          alt="" loading="lazy">
+    <img class="art-8"  src="images/artwork/pierogi-groovedown.jpg"        alt="" loading="lazy">
+    <img class="art-9"  src="images/artwork/meet-me-under-elm-tree.jpg"    alt="" loading="lazy">
+    <img class="art-10" src="images/artwork/folding-for-tomorrow.jpg"      alt="" loading="lazy">
+    <img class="art-11" src="images/artwork/last-pierogi-at-sundown.jpg"   alt="" loading="lazy">
+    <img class="art-12" src="images/artwork/midnight-at-kowalskis.jpg"     alt="" loading="lazy">
+  </div>
 
   <!-- Spray paint splatter overlay -->
   <div class="spray-overlay"></div>
