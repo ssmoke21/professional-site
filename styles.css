@@ -699,10 +699,19 @@ a.highlight-card {
   background: rgba(255,255,255,0.12);
   border: 1px solid rgba(255,255,255,0.25);
   border-radius: var(--radius);
-  padding: 2.5rem;
+  padding: 1.25rem;
   text-align: center;
   color: #fff;
   backdrop-filter: blur(4px);
+  display: block;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.journal-preview-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+  color: #fff;
 }
 
 .journal-preview-icon {
@@ -712,8 +721,8 @@ a.highlight-card {
 
 .journal-preview-thumbnail {
   width: 100%;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
   display: block;
   object-fit: cover;
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
