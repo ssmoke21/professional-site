@@ -226,7 +226,7 @@
       z-index: 2;
       overflow: hidden;
       pointer-events: none;
-      opacity: 0.12;
+      opacity: 0.22;
       transition: opacity 0.6s ease, filter 0.6s ease;
     }
 
@@ -234,40 +234,40 @@
       position: absolute;
       border-radius: 6px;
       object-fit: cover;
-      filter: saturate(1.4) contrast(1.1);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      filter: saturate(1.6) contrast(1.15);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.7);
     }
 
     /* Scatter the 12 images across the viewport */
-    .art-1  { width: 180px; top: 2%;   left: 3%;   transform: rotate(-8deg); }
-    .art-2  { width: 160px; top: 5%;   left: 55%;  transform: rotate(5deg); }
-    .art-3  { width: 200px; top: 4%;   right: 5%;  transform: rotate(-3deg); }
-    .art-4  { width: 170px; top: 28%;  left: 8%;   transform: rotate(12deg); }
-    .art-5  { width: 190px; top: 30%;  left: 42%;  transform: rotate(-6deg); }
-    .art-6  { width: 165px; top: 25%;  right: 3%;  transform: rotate(9deg); }
-    .art-7  { width: 185px; top: 52%;  left: 2%;   transform: rotate(-11deg); }
-    .art-8  { width: 175px; top: 55%;  left: 48%;  transform: rotate(4deg); }
-    .art-9  { width: 195px; top: 50%;  right: 6%;  transform: rotate(-7deg); }
-    .art-10 { width: 170px; top: 75%;  left: 6%;   transform: rotate(8deg); }
-    .art-11 { width: 180px; top: 78%;  left: 40%;  transform: rotate(-5deg); }
-    .art-12 { width: 160px; top: 73%;  right: 4%;  transform: rotate(10deg); }
+    .art-1  { width: 220px; top: 2%;   left: 3%;   transform: rotate(-8deg); }
+    .art-2  { width: 200px; top: 5%;   left: 55%;  transform: rotate(5deg); }
+    .art-3  { width: 240px; top: 4%;   right: 5%;  transform: rotate(-3deg); }
+    .art-4  { width: 210px; top: 28%;  left: 8%;   transform: rotate(12deg); }
+    .art-5  { width: 230px; top: 30%;  left: 42%;  transform: rotate(-6deg); }
+    .art-6  { width: 205px; top: 25%;  right: 3%;  transform: rotate(9deg); }
+    .art-7  { width: 225px; top: 52%;  left: 2%;   transform: rotate(-11deg); }
+    .art-8  { width: 215px; top: 55%;  left: 48%;  transform: rotate(4deg); }
+    .art-9  { width: 235px; top: 50%;  right: 6%;  transform: rotate(-7deg); }
+    .art-10 { width: 210px; top: 75%;  left: 6%;   transform: rotate(8deg); }
+    .art-11 { width: 220px; top: 78%;  left: 40%;  transform: rotate(-5deg); }
+    .art-12 { width: 200px; top: 73%;  right: 4%;  transform: rotate(10deg); }
 
     /* Mode-aware collage appearance */
     body.mode-steam .artwork-collage {
-      opacity: 0.15;
-      filter: brightness(1.1);
+      opacity: 0.28;
+      filter: brightness(1.15);
     }
 
     body.mode-analog .artwork-collage {
-      opacity: 0.10;
+      opacity: 0.18;
       filter: sepia(0.3) brightness(0.8);
     }
 
     /* Hide some images on mobile for cleaner look */
     @media (max-width: 768px) {
-      .artwork-collage { opacity: 0.06; }
+      .artwork-collage { opacity: 0.10; }
       .art-2, .art-5, .art-8, .art-11 { display: none; }
-      .artwork-collage img { width: 120px !important; }
+      .artwork-collage img { width: 150px !important; }
     }
 
     /* ===== Music Embed ===== */
